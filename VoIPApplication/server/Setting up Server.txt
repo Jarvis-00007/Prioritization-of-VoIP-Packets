@@ -1,0 +1,23 @@
+1. Check if node and npm is installed using [node -v] and [npm -v]. They must be up to date.
+
+2. Create a directory webrtc-server.
+
+3. Inside the directory run [npm init -y].
+   Output : {
+  "name": "webrtc-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
+
+4. [npm install ws]
+
+5. Steps 3 creates a package.json file and 4 installs a websocket library.
+
+6. Create a server.js file. 

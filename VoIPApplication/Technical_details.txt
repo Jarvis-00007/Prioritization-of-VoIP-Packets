@@ -1,0 +1,18 @@
+We will be using webRTC for this project. The signalling server will be a laptop(for now) which will provide internet to both the client laptops.
+
+SERVER
+ 1. In case of windows see the ip address using [ipconfig]. In case of Linux use [ip a]
+ 2. Look for the Ipv4 of wireless lan. That will be the ip address of the server.
+
+CLIENT
+ 1. Connect to the wifi of the server.
+ 2. See whether the ip address of the wifi matches with the first three words of the ip address of the server.
+ 3. If it does the connection is successful
+
+For PING
+--------
+Windows might use firewall to stop ping from coming to your laptop. Then u can allow a particular ip address to send ping using
+[netsh advfirewall firewall add rule name="Allow ICMPv4-Local" protocol=icmpv4 dir=in action=allow remoteip=192.168.137.x]
+Later it could be disabled using
+[netsh advfirewall firewall delete rule name="Allow ICMPv4-Local"]
+
