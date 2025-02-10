@@ -6,6 +6,7 @@ const wss = new WebSocket.Server({ port: 3000 });
 wss.on('connection', function connection(ws) {
     console.log('Client connected');
 
+    // message sent by client to server
     ws.on('message', function incoming(message) {
         console.log(`Received: ${message}`);
 
@@ -17,6 +18,7 @@ wss.on('connection', function connection(ws) {
         });
     });
 
+    // when we want to disconnect server
     ws.on('close', () => {
         console.log('Client disconnected');
     });

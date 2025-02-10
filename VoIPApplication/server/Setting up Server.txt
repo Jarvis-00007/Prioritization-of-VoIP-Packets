@@ -20,4 +20,37 @@
 
 5. Steps 3 creates a package.json file and 4 installs a websocket library.
 
-6. Create a server.js file. 
+6. Create a server.js file. Save it and type [node server.js] in terminal to run server script.
+
+7. Open any Web Breowsers and console and type the following;
+            // Establish a WebSocket connection to the server running on localhost at port 3000
+          const socket = new WebSocket("ws://localhost:3000"); 
+
+          // Event listener for when the connection is successfully opened
+          socket.onopen = () => {
+              console.log("Connected to WebSocket server");  // ✅ Log successful connection
+
+              // Define the message to send to the server
+              const message = "Hello from the client!";
+              
+              // Send the message to the WebSocket server
+              socket.send(message);
+
+              console.log("Sent to server:", message);  // ✅ Log the sent message
+          };
+
+          // Event listener for when a message is received from the server
+          socket.onmessage = async (event) => {
+              // Convert the received message (which may be in Blob format) to text
+              const text = await event.data.text();  
+              
+              // Log the received message from the server
+              console.log("Message from server:", text);
+          };
+
+8. Write the above on both clients and then send message as :
+          socket.send("Hello from Client 1!");
+   You should see message coming to server and broadcasted to other clients. Alco you will see the server recieving packets on terminal
+
+9. To close connection you can refresh the browser. 
+
