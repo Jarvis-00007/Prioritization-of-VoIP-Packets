@@ -8,7 +8,7 @@ export const WebSocketProvider = ({ children }) => {
     const [socket, setSocket] = useState(null);
 
     useEffect(() => {
-        const ws = new WebSocket("ws://192.168.126.113:5000"); // Replace with server IP
+        const ws = new WebSocket("wss://1af4-2409-40f2-3058-fd1a-e009-e09c-86b3-c288.ngrok-free.app"); // Replace with server IP
 
         ws.onopen = () => console.log("Connected to WebSocket");
         ws.onmessage = (msg) => console.log("Message received:", msg.data);
