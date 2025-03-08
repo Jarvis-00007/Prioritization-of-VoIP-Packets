@@ -48,7 +48,7 @@ export default function Home() {
       </div>
       <div style={{ display: "flex", justifyContent: "space-around", background: "black", padding: "16px", boxShadow: "0px -4px 6px rgba(0,0,0,0.1)" }}>
         <button
-          style={{ display: "flex", flexDirection: "column", alignItems: "center", fontSize: "14px", fontWeight: "bold", color: activeTab === "recentCalls" ? "#22c55e" : "#9ca3af", cursor: "pointer", border: "none", background: "none" }}
+          style={{ display: "flex", flexDirection: "column", alignItems: "center", fontSize: "14px", fontWeight: "bold", color: activeTab === "recentCalls" ? "#22c55e" : "#9ca3af", cursor: "pointer", border:activeTab=="recentCalls"? "2px solid #166534": "none", background: activeTab=="recentCalls"?"#181818":"none",borderRadius:"8px",padding:"6px 10px" }}
           onClick={() => { setActiveTab("recentCalls"); setShowDashboardOption(false); }}
         >
           <FaPhoneAlt size={24} style={{ marginBottom: "4px" }} />
@@ -56,7 +56,7 @@ export default function Home() {
         </button>
 
         <button
-          style={{ display: "flex", flexDirection: "column", alignItems: "center", fontSize: "14px", fontWeight: "bold", color: activeTab === "contacts" ? "#22c55e" : "#9ca3af", cursor: "pointer", border: "none", background: "none" }}
+          style={{ display: "flex", flexDirection: "column", alignItems: "center", fontSize: "14px", fontWeight: "bold", color: activeTab === "contacts" ? "#22c55e" : "#9ca3af", cursor: "pointer", border:activeTab=="contacts"?"2px solid #166534": "none", background:activeTab=="contacts"?"#181818":"none",borderRadius:"8px",padding:"6px 10px"}}
           onClick={() => { setActiveTab("contacts"); setShowDashboardOption(false); }}
         >
           <FaUserFriends size={24} style={{ marginBottom: "4px" }} />
@@ -64,8 +64,11 @@ export default function Home() {
         </button>
 
         <button
-          style={{ display: "flex", flexDirection: "column", alignItems: "center", fontSize: "14px", fontWeight: "bold", color: "#22c55e", cursor: "pointer", border: "none", background: "none" }}
-          onClick={() => setShowDashboardOption(true)}
+          style={{ display: "flex", flexDirection: "column", alignItems: "center", fontSize: "14px", fontWeight: "bold", color: activeTab === "dashboard" ?"#22c55e":"#9ca3af", cursor: "pointer", border:activeTab=="dashboard"?"2px solid #166534":"none", background:activeTab=="dashboard"?"#181818": "none",borderRadius:"8px",padding:"6px 10px" }}
+          onClick={() => 
+            {
+              setActiveTab("dashboard");
+              setShowDashboardOption(true)}}
         >
           <FaTachometerAlt size={24} style={{ marginBottom: "4px" }} />
           Dashboard
