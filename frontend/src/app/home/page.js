@@ -10,6 +10,8 @@ export default function Home() {
   const [showDashboardOption, setShowDashboardOption] = useState(false);
   const [selectedContact, setSelectedContact] = useState(null);
   const [ShowCallModal, setShowCallModal] =useState(false)
+  const [clicked, setClicked]= useState(false);
+  const [hoveredTab,setHoveredTab]=useState(null);
   const contacts = [
     { name: "John Doe", email: "john@example.com", profilePic: "https://i.pravatar.cc/50?img=1" },
     { name: "Alice Smith", email: "alice@example.com", profilePic: "https://i.pravatar.cc/50?img=2" },
@@ -37,9 +39,23 @@ export default function Home() {
   };
   const confirmCall = () => {
     setShowCallModal(false);
-    router.push("/call-page");
+    router.push("/call");
   }
-  
+  const getButtonStyle = (tabName) => ({
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    fontSize: "14px",
+    fontWeight: "bold",
+    color: activeTab === tabName || hoveredTab === tabName ? "#22c55e" : "#9ca3af",
+    cursor: "pointer",
+    border: (activeTab === tabName || hoveredTab === tabName) ? "2px solid #166534" : "none",
+    background: (activeTab === tabName || hoveredTab === tabName) ? "#181818" : "none",
+    borderRadius: "8px",
+    padding: "6px 10px",
+    width:"120px",
+    height:"6opx",
+  });
   
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "100vh", background: "black", color: "white" }}>
@@ -48,27 +64,34 @@ export default function Home() {
       </div>
       <div style={{ display: "flex", justifyContent: "space-around", background: "black", padding: "16px", boxShadow: "0px -4px 6px rgba(0,0,0,0.1)" }}>
         <button
-          style={{ display: "flex", flexDirection: "column", alignItems: "center", fontSize: "14px", fontWeight: "bold", color: activeTab === "recentCalls" ? "#22c55e" : "#9ca3af", cursor: "pointer", border:activeTab=="recentCalls"? "2px solid #166534": "none", background: activeTab=="recentCalls"?"#181818":"none",borderRadius:"8px",padding:"6px 10px" }}
+          style={getButtonStyle("recentCalls")}
           onClick={() => { setActiveTab("recentCalls"); setShowDashboardOption(false); }}
+          onMouseEnter={()=> setHoveredTab("recentCalls")}
+          onMouseLeave={()=> setHoveredTab(null)}
         >
           <FaPhoneAlt size={24} style={{ marginBottom: "4px" }} />
           Recent Calls
         </button>
 
         <button
-          style={{ display: "flex", flexDirection: "column", alignItems: "center", fontSize: "14px", fontWeight: "bold", color: activeTab === "contacts" ? "#22c55e" : "#9ca3af", cursor: "pointer", border:activeTab=="contacts"?"2px solid #166534": "none", background:activeTab=="contacts"?"#181818":"none",borderRadius:"8px",padding:"6px 10px"}}
+          style={getButtonStyle("contacts")}
           onClick={() => { setActiveTab("contacts"); setShowDashboardOption(false); }}
+          onMouseEnter={()=> setHoveredTab("contacts")}
+          onMouseLeave={()=> setHoveredTab(null)}
         >
           <FaUserFriends size={24} style={{ marginBottom: "4px" }} />
           Contacts
         </button>
 
         <button
-          style={{ display: "flex", flexDirection: "column", alignItems: "center", fontSize: "14px", fontWeight: "bold", color: activeTab === "dashboard" ?"#22c55e":"#9ca3af", cursor: "pointer", border:activeTab=="dashboard"?"2px solid #166534":"none", background:activeTab=="dashboard"?"#181818": "none",borderRadius:"8px",padding:"6px 10px" }}
+          style={getButtonStyle("dashboard")}
           onClick={() => 
             {
               setActiveTab("dashboard");
-              setShowDashboardOption(true)}}
+              setShowDashboardOption(true);
+              }}
+          onMouseEnter={()=> setHoveredTab("dashboard")}
+          onMouseLeave={()=>setHoveredTab(null)}
         >
           <FaTachometerAlt size={24} style={{ marginBottom: "4px" }} />
           Dashboard
